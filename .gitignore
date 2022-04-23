@@ -10,4 +10,5 @@ Pipfile.lock
 python
 lambda/apikey.json
 lambda/twitter.json
+lambda/test.py
 layer

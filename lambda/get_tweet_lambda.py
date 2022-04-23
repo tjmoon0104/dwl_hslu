@@ -11,6 +11,14 @@ from datetime import datetime
 
 def lambda_handler(event, context):
     # API credentials
+    with open('twitter.json') as f:
+        credentials = json.load(f)
+
+    # Credentials
+    consumer_key = credentials["consumer_key"]
+    consumer_secret = credentials["consumer_secret"]
+    access_token = credentials["access_token"]
+    access_token_secret = credentials["access_token_secret"]
 
     url = "https://api.twitter.com/oauth2/token"
 

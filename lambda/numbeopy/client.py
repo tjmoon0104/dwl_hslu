@@ -370,3 +370,13 @@ class NumbeoClient:
         """
         params = dict((k, v) for k, v in locals().items())
         return self.request(path='rankings_by_city_current', params=params)
+
+    def rankings_by_country_historical(self, section: int = None):
+        """
+        Description: Returns all historical rankings by country for a given section at the website (i.e. cost of living, property, crime).
+
+        :param section:
+        :return:
+        """
+        params = dict((k, v) for k, v in locals().items())
+        return self.request(path='rankings_by_country_historical', params=params)

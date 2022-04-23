@@ -10,7 +10,6 @@ def lambda_handler(event, context):
     nb = NumbeoClient()
 
     for c in countries:
-        # country = countries.get('japan').name
         country = c.alpha3
 
         response = nb.historical_country_prices(country)
