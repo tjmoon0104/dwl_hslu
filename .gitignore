@@ -1,0 +1,13 @@
+.terraform
+.idea
+builds
+.terraform.lock.hcl
+.terraform.*
+terraform.*
+lambda/*.zip
+deploy
+Pipfile.lock
+python
+lambda/apikey.json
+lambda/twitter.json
+layer
