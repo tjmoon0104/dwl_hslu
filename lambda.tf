@@ -29,6 +29,18 @@ resource "aws_lambda_function" "country_prices" {
   timeout          = 180
 }
 
+# Historical Indicies
+resource "aws_lambda_function" "rankings_by_country_historical" {
+  filename         = var.lambda_archive
+  function_name    = "rankings_by_country_historical"
+  role             = var.aws_role
+  handler          = "rankings_by_country_historical.lambda_handler"
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  runtime          = "python3.8"
+  layers           = [aws_lambda_layer_version.mylayer.arn]
+  timeout          = 180
+}
+
 resource "aws_lambda_function" "twitter_count" {
   filename         = var.lambda_archive
   function_name    = "twitter_count"
