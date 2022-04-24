@@ -1,6 +1,6 @@
 # DWL"Coding Fishes in the Lake"
 
-DWL project for analysis on cost of living and its relation to quality of life
+DWL project for analysis on "How does gasoline price increase influence our daily life"
 
 ## Installation
 
@@ -33,3 +33,7 @@ All lambda functions are located in directory **lambda**
 - country_prices.py (Numbeo API)
 - historical_country_prices.py (Numbeo API)
 - ranking_by_country_historical.py (Numbeo API)
+
+## Additional Data
+
+- World Happiness Report Data (world-happines-report-data-cleaning.ipynb)
