@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "aws_role" {
   type    = string
-  default = "arn:aws:iam::181485319254:role/robomaker_students"
+  default = "arn:aws:iam::532621252424:role/robomaker_students"
 }
 
 variable "lambda_archive" {

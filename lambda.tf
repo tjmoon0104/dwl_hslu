@@ -6,39 +6,28 @@ data "archive_file" "lambda_zip" {
 }
 
 # Historical Country Prices Lambda Function
-resource "aws_lambda_function" "historical_country_prices" {
+resource "aws_lambda_function" "numbeo_data" {
   filename         = var.lambda_archive
-  function_name    = "historical_country_prices"
+  function_name    = "numbeo_api_data"
   role             = var.aws_role
-  handler          = "historical_country_prices.lambda_handler"
+  handler          = "numbeo_data.lambda_handler"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   runtime          = "python3.8"
   layers           = [aws_lambda_layer_version.mylayer.arn]
-  timeout          = 180
+  timeout          = 600
+  memory_size      = 512
 }
 
-# Current Country Prices Lambda Function
-resource "aws_lambda_function" "country_prices" {
+resource "aws_lambda_function" "preprocess_numbeo" {
   filename         = var.lambda_archive
-  function_name    = "country_prices"
+  function_name    = "preprocess_numbeo"
   role             = var.aws_role
-  handler          = "country_prices.lambda_handler"
+  handler          = "preprocess_numbeo.lambda_handler"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   runtime          = "python3.8"
   layers           = [aws_lambda_layer_version.mylayer.arn]
-  timeout          = 180
-}
-
-# Historical Indicies
-resource "aws_lambda_function" "rankings_by_country_historical" {
-  filename         = var.lambda_archive
-  function_name    = "rankings_by_country_historical"
-  role             = var.aws_role
-  handler          = "rankings_by_country_historical.lambda_handler"
-  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-  runtime          = "python3.8"
-  layers           = [aws_lambda_layer_version.mylayer.arn]
-  timeout          = 180
+  timeout          = 600
+  memory_size      = 512
 }
 
 resource "aws_lambda_function" "twitter_count" {
@@ -52,9 +41,10 @@ resource "aws_lambda_function" "twitter_count" {
   timeout          = 180
 }
 
+
 # Lambda Layer
 resource "aws_lambda_layer_version" "mylayer" {
-  layer_name          = "customlayer"
+  layer_name          = "customlayer1"
   filename            = "layer/mylayer.zip"
   compatible_runtimes = ["python3.8"]
   depends_on          = [null_resource.build_package]
